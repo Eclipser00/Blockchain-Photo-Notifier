@@ -1,0 +1,26 @@
+project_structure:
+  build: build
+  contracts: contracts
+  interfaces: interfaces
+  reports: reports
+  scripts: scripts
+  tests: tests
+
+env_variables:
+  # Define aquí ETH_NODE_URI o claves si las necesitas
+  ETH_NODE_URI: ${ETH_NODE_URL}
+
+networks:
+  default: development
+  development:
+    gas_price: 2000000000
+    cmd_settings:
+      port: 7545
+      host: http://127.0.0.1
+
+compiler:
+  solc:
+    version: 0.8.17
+    optimizer:
+      enabled: true
+      runs: 200

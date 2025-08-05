@@ -1,0 +1,15 @@
+{
+  "contracts": {
+    "Notarizacion": "15099ab841396ee00aefaaf96a3f4696d7fa3009"
+  },
+  "tests": {
+    "tests/test_notarizacion.py": {
+      "coverage": false,
+      "isolated": false,
+      "results": "..",
+      "sha1": "a30f27e1c76101a438fce8445934546061bc0358",
+      "txhash": []
+    }
+  },
+  "tx": {}
+}

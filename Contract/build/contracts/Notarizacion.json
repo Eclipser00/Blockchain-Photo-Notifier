@@ -1,0 +1,2400 @@
+{
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "autor",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "hashFoto",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "NotarizacionRealizada",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "hashFoto",
+          "type": "bytes32"
+        }
+      ],
+      "name": "notarizar",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "registros",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "allSourcePaths": {
+    "0": "contracts/Notarizacion.sol"
+  },
+  "ast": {
+    "absolutePath": "contracts/Notarizacion.sol",
+    "exportedSymbols": {
+      "Notarizacion": [
+        53
+      ]
+    },
+    "id": 54,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:23:0"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "Notarizacion",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 53,
+        "linearizedBaseContracts": [
+          53
+        ],
+        "name": "Notarizacion",
+        "nameLocation": "66:12:0",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "eventSelector": "4b9184d1c7ae30350e7eceab5ffbec6dc693d39e9de338f3273adc2523bbe397",
+            "id": 9,
+            "name": "NotarizacionRealizada",
+            "nameLocation": "141:21:0",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 8,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "autor",
+                  "nameLocation": "188:5:0",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9,
+                  "src": "172:21:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "172:7:0",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "hashFoto",
+                  "nameLocation": "219:8:0",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9,
+                  "src": "203:24:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 4,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "203:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "timestamp",
+                  "nameLocation": "245:9:0",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9,
+                  "src": "237:17:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 6,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "237:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "162:98:0"
+            },
+            "src": "135:126:0"
+          },
+          {
+            "constant": false,
+            "functionSelector": "762849cc",
+            "id": 13,
+            "mutability": "mutable",
+            "name": "registros",
+            "nameLocation": "358:9:0",
+            "nodeType": "VariableDeclaration",
+            "scope": 53,
+            "src": "323:44:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_bytes32_$_t_uint256_$",
+              "typeString": "mapping(bytes32 => uint256)"
+            },
+            "typeName": {
+              "id": 12,
+              "keyType": {
+                "id": 10,
+                "name": "bytes32",
+                "nodeType": "ElementaryTypeName",
+                "src": "331:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "323:27:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_bytes32_$_t_uint256_$",
+                "typeString": "mapping(bytes32 => uint256)"
+              },
+              "valueType": {
+                "id": 11,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "342:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 51,
+              "nodeType": "Block",
+              "src": "625:329:0",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        "id": 25,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "id": 20,
+                          "name": "hashFoto",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 16,
+                          "src": "643:8:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes32",
+                            "typeString": "bytes32"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "!=",
+                        "rightExpression": {
+                          "arguments": [
+                            {
+                              "hexValue": "30",
+                              "id": 23,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "663:1:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              }
+                            ],
+                            "id": 22,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "655:7:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_bytes32_$",
+                              "typeString": "type(bytes32)"
+                            },
+                            "typeName": {
+                              "id": 21,
+                              "name": "bytes32",
+                              "nodeType": "ElementaryTypeName",
+                              "src": "655:7:0",
+                              "typeDescriptions": {}
+                            }
+                          },
+                          "id": 24,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "655:10:0",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes32",
+                            "typeString": "bytes32"
+                          }
+                        },
+                        "src": "643:22:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "48617368206e6f20707565646520736572206365726f",
+                        "id": 26,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "667:24:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_dde055c94994d4ae79b852087daccca02b59afd9acd2dd062c222f8df935da61",
+                          "typeString": "literal_string \"Hash no puede ser cero\""
+                        },
+                        "value": "Hash no puede ser cero"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_dde055c94994d4ae79b852087daccca02b59afd9acd2dd062c222f8df935da61",
+                          "typeString": "literal_string \"Hash no puede ser cero\""
+                        }
+                      ],
+                      "id": 19,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
+                      "referencedDeclaration": -18,
+                      "src": "635:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 27,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "635:57:0",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 28,
+                  "nodeType": "ExpressionStatement",
+                  "src": "635:57:0"
+                },
+                {
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 33,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "baseExpression": {
+                        "id": 29,
+                        "name": "registros",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 13,
+                        "src": "781:9:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_bytes32_$_t_uint256_$",
+                          "typeString": "mapping(bytes32 => uint256)"
+                        }
+                      },
+                      "id": 31,
+                      "indexExpression": {
+                        "id": 30,
+                        "name": "hashFoto",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 16,
+                        "src": "791:8:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "781:19:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "hexValue": "30",
+                      "id": 32,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "804:1:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "781:24:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 50,
+                  "nodeType": "IfStatement",
+                  "src": "777:171:0",
+                  "trueBody": {
+                    "id": 49,
+                    "nodeType": "Block",
+                    "src": "807:141:0",
+                    "statements": [
+                      {
+                        "expression": {
+                          "id": 39,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "baseExpression": {
+                              "id": 34,
+                              "name": "registros",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 13,
+                              "src": "821:9:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_bytes32_$_t_uint256_$",
+                                "typeString": "mapping(bytes32 => uint256)"
+                              }
+                            },
+                            "id": 36,
+                            "indexExpression": {
+                              "id": 35,
+                              "name": "hashFoto",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 16,
+                              "src": "831:8:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "821:19:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "expression": {
+                              "id": 37,
+                              "name": "block",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": -4,
+                              "src": "843:5:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_block",
+                                "typeString": "block"
+                              }
+                            },
+                            "id": 38,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "849:9:0",
+                            "memberName": "timestamp",
+                            "nodeType": "MemberAccess",
+                            "src": "843:15:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "821:37:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "id": 40,
+                        "nodeType": "ExpressionStatement",
+                        "src": "821:37:0"
+                      },
+                      {
+                        "eventCall": {
+                          "arguments": [
+                            {
+                              "expression": {
+                                "id": 42,
+                                "name": "msg",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": -15,
+                                "src": "899:3:0",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_magic_message",
+                                  "typeString": "msg"
+                                }
+                              },
+                              "id": 43,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberLocation": "903:6:0",
+                              "memberName": "sender",
+                              "nodeType": "MemberAccess",
+                              "src": "899:10:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            {
+                              "id": 44,
+                              "name": "hashFoto",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 16,
+                              "src": "911:8:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              }
+                            },
+                            {
+                              "expression": {
+                                "id": 45,
+                                "name": "block",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": -4,
+                                "src": "921:5:0",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_magic_block",
+                                  "typeString": "block"
+                                }
+                              },
+                              "id": 46,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberLocation": "927:9:0",
+                              "memberName": "timestamp",
+                              "nodeType": "MemberAccess",
+                              "src": "921:15:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              },
+                              {
+                                "typeIdentifier": "t_bytes32",
+                                "typeString": "bytes32"
+                              },
+                              {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            ],
+                            "id": 41,
+                            "name": "NotarizacionRealizada",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 9,
+                            "src": "877:21:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_bytes32_$_t_uint256_$returns$__$",
+                              "typeString": "function (address,bytes32,uint256)"
+                            }
+                          },
+                          "id": 47,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "877:60:0",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 48,
+                        "nodeType": "EmitStatement",
+                        "src": "872:65:0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": {
+              "id": 14,
+              "nodeType": "StructuredDocumentation",
+              "src": "374:200:0",
+              "text": " @dev Registra el hash de una foto/v\u00eddeo en la blockchain.\n      Si el hash ya existe, no vuelve a emitir el evento.\n @param hashFoto El hash de la foto/v\u00eddeo (SHA-256)"
+            },
+            "functionSelector": "8b29b8ee",
+            "id": 52,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "notarizar",
+            "nameLocation": "588:9:0",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 17,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 16,
+                  "mutability": "mutable",
+                  "name": "hashFoto",
+                  "nameLocation": "606:8:0",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 52,
+                  "src": "598:16:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 15,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "598:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "597:18:0"
+            },
+            "returnParameters": {
+              "id": 18,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "625:0:0"
+            },
+            "scope": 53,
+            "src": "579:375:0",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 54,
+        "src": "57:899:0",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:924:0"
+  },
+  "bytecode": "608060405234801561001057600080fd5b5061017d806100206000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c8063762849cc1461003b5780638b29b8ee1461006d575b600080fd5b61005b61004936600461012e565b60006020819052908152604090205481565b60405190815260200160405180910390f35b61008061007b36600461012e565b610082565b005b806100cc5760405162461bcd60e51b815260206004820152601660248201527548617368206e6f20707565646520736572206365726f60501b604482015260640160405180910390fd5b600081815260208190526040812054900361012b576000818152602081815260409182902042908190559151918252829133917f4b9184d1c7ae30350e7eceab5ffbec6dc693d39e9de338f3273adc2523bbe397910160405180910390a35b50565b60006020828403121561014057600080fd5b503591905056fea264697066735822122081d07957a2bd368c0b0ede3652125356e06ddc1d75f4959e4853add04dfdde0364736f6c63430008110033",
+  "bytecodeSha1": "15099ab841396ee00aefaaf96a3f4696d7fa3009",
+  "compiler": {
+    "evm_version": "istanbul",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "version": "0.8.17+commit.8df45f5f"
+  },
+  "contractName": "Notarizacion",
+  "coverageMap": {
+    "branches": {
+      "0": {
+        "Notarizacion.notarizar": {
+          "3": [
+            781,
+            805,
+            false
+          ]
+        }
+      }
+    },
+    "statements": {
+      "0": {
+        "Notarizacion.notarizar": {
+          "0": [
+            635,
+            692
+          ],
+          "1": [
+            821,
+            858
+          ],
+          "2": [
+            872,
+            937
+          ]
+        }
+      }
+    }
+  },
+  "dependencies": [],
+  "deployedBytecode": "608060405234801561001057600080fd5b50600436106100365760003560e01c8063762849cc1461003b5780638b29b8ee1461006d575b600080fd5b61005b61004936600461012e565b60006020819052908152604090205481565b60405190815260200160405180910390f35b61008061007b36600461012e565b610082565b005b806100cc5760405162461bcd60e51b815260206004820152601660248201527548617368206e6f20707565646520736572206365726f60501b604482015260640160405180910390fd5b600081815260208190526040812054900361012b576000818152602081815260409182902042908190559151918252829133917f4b9184d1c7ae30350e7eceab5ffbec6dc693d39e9de338f3273adc2523bbe397910160405180910390a35b50565b60006020828403121561014057600080fd5b503591905056fea264697066735822122081d07957a2bd368c0b0ede3652125356e06ddc1d75f4959e4853add04dfdde0364736f6c63430008110033",
+  "deployedSourceMap": "57:899:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;323:44;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;345:25:1;;;333:2;318:18;323:44:0;;;;;;;579:375;;;;;;:::i;:::-;;:::i;:::-;;;643:8;635:57;;;;-1:-1:-1;;;635:57:0;;583:2:1;635:57:0;;;565:21:1;622:2;602:18;;;595:30;-1:-1:-1;;;641:18:1;;;634:52;703:18;;635:57:0;;;;;;;;781:9;:19;;;;;;;;;;;:24;;777:171;;821:9;:19;;;;;;;;;;;;843:15;821:37;;;;877:60;;345:25:1;;;821:19:0;;899:10;;877:60;;318:18:1;877:60:0;;;;;;;777:171;579:375;:::o;14:180:1:-;73:6;126:2;114:9;105:7;101:23;97:32;94:52;;;142:1;139;132:12;94:52;-1:-1:-1;165:23:1;;14:180;-1:-1:-1;14:180:1:o",
+  "language": "Solidity",
+  "natspec": {
+    "kind": "dev",
+    "methods": {
+      "notarizar(bytes32)": {
+        "details": "Registra el hash de una foto/v\u00eddeo en la blockchain.      Si el hash ya existe, no vuelve a emitir el evento.",
+        "params": {
+          "hashFoto": "El hash de la foto/v\u00eddeo (SHA-256)"
+        }
+      }
+    },
+    "version": 1
+  },
+  "offset": [
+    57,
+    956
+  ],
+  "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH2 0x10 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x4 CALLDATASIZE LT PUSH2 0x36 JUMPI PUSH1 0x0 CALLDATALOAD PUSH1 0xE0 SHR DUP1 PUSH4 0x762849CC EQ PUSH2 0x3B JUMPI DUP1 PUSH4 0x8B29B8EE EQ PUSH2 0x6D JUMPI JUMPDEST PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH2 0x5B PUSH2 0x49 CALLDATASIZE PUSH1 0x4 PUSH2 0x12E JUMP JUMPDEST PUSH1 0x0 PUSH1 0x20 DUP2 SWAP1 MSTORE SWAP1 DUP2 MSTORE PUSH1 0x40 SWAP1 KECCAK256 SLOAD DUP2 JUMP JUMPDEST PUSH1 0x40 MLOAD SWAP1 DUP2 MSTORE PUSH1 0x20 ADD PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 RETURN JUMPDEST PUSH2 0x80 PUSH2 0x7B CALLDATASIZE PUSH1 0x4 PUSH2 0x12E JUMP JUMPDEST PUSH2 0x82 JUMP JUMPDEST STOP JUMPDEST DUP1 PUSH2 0xCC JUMPI PUSH1 0x40 MLOAD PUSH3 0x461BCD PUSH1 0xE5 SHL DUP2 MSTORE PUSH1 0x20 PUSH1 0x4 DUP3 ADD MSTORE PUSH1 0x16 PUSH1 0x24 DUP3 ADD MSTORE PUSH22 0x48617368206E6F20707565646520736572206365726F PUSH1 0x50 SHL PUSH1 0x44 DUP3 ADD MSTORE PUSH1 0x64 ADD PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 REVERT JUMPDEST PUSH1 0x0 DUP2 DUP2 MSTORE PUSH1 0x20 DUP2 SWAP1 MSTORE PUSH1 0x40 DUP2 KECCAK256 SLOAD SWAP1 SUB PUSH2 0x12B JUMPI PUSH1 0x0 DUP2 DUP2 MSTORE PUSH1 0x20 DUP2 DUP2 MSTORE PUSH1 0x40 SWAP2 DUP3 SWAP1 KECCAK256 TIMESTAMP SWAP1 DUP2 SWAP1 SSTORE SWAP2 MLOAD SWAP2 DUP3 MSTORE DUP3 SWAP2 CALLER SWAP2 PUSH32 0x4B9184D1C7AE30350E7ECEAB5FFBEC6DC693D39E9DE338F3273ADC2523BBE397 SWAP2 ADD PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 LOG3 JUMPDEST POP JUMP JUMPDEST PUSH1 0x0 PUSH1 0x20 DUP3 DUP5 SUB SLT ISZERO PUSH2 0x140 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP CALLDATALOAD SWAP2 SWAP1 POP JUMP INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 DUP2 0xD0 PUSH26 0x57A2BD368C0B0EDE3652125356E06DDC1D75F4959E4853ADD04D REVERT 0xDE SUB PUSH5 0x736F6C6343 STOP ADDMOD GT STOP CALLER ",
+  "pcMap": {
+    "0": {
+      "offset": [
+        57,
+        956
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x80"
+    },
+    "2": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x40"
+    },
+    "4": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "MSTORE",
+      "path": "0"
+    },
+    "5": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "CALLVALUE",
+      "path": "0"
+    },
+    "6": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "DUP1",
+      "path": "0"
+    },
+    "7": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "ISZERO",
+      "path": "0"
+    },
+    "8": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "PUSH2",
+      "path": "0",
+      "value": "0x10"
+    },
+    "11": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "JUMPI",
+      "path": "0"
+    },
+    "12": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x0"
+    },
+    "14": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "DUP1",
+      "path": "0"
+    },
+    "15": {
+      "dev": "Cannot send ether to nonpayable function",
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "REVERT",
+      "path": "0"
+    },
+    "16": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "JUMPDEST",
+      "path": "0"
+    },
+    "17": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "POP",
+      "path": "0"
+    },
+    "18": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x4"
+    },
+    "20": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "CALLDATASIZE",
+      "path": "0"
+    },
+    "21": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "LT",
+      "path": "0"
+    },
+    "22": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "PUSH2",
+      "path": "0",
+      "value": "0x36"
+    },
+    "25": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "JUMPI",
+      "path": "0"
+    },
+    "26": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x0"
+    },
+    "28": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "CALLDATALOAD",
+      "path": "0"
+    },
+    "29": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0xE0"
+    },
+    "31": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "SHR",
+      "path": "0"
+    },
+    "32": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "DUP1",
+      "path": "0"
+    },
+    "33": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "PUSH4",
+      "path": "0",
+      "value": "0x762849CC"
+    },
+    "38": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "EQ",
+      "path": "0"
+    },
+    "39": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "PUSH2",
+      "path": "0",
+      "value": "0x3B"
+    },
+    "42": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "JUMPI",
+      "path": "0"
+    },
+    "43": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "DUP1",
+      "path": "0"
+    },
+    "44": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "PUSH4",
+      "path": "0",
+      "value": "0x8B29B8EE"
+    },
+    "49": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "EQ",
+      "path": "0"
+    },
+    "50": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "PUSH2",
+      "path": "0",
+      "value": "0x6D"
+    },
+    "53": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "JUMPI",
+      "path": "0"
+    },
+    "54": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "JUMPDEST",
+      "path": "0"
+    },
+    "55": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x0"
+    },
+    "57": {
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "DUP1",
+      "path": "0"
+    },
+    "58": {
+      "first_revert": true,
+      "fn": null,
+      "offset": [
+        57,
+        956
+      ],
+      "op": "REVERT",
+      "path": "0"
+    },
+    "59": {
+      "offset": [
+        323,
+        367
+      ],
+      "op": "JUMPDEST",
+      "path": "0"
+    },
+    "60": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "PUSH2",
+      "path": "0",
+      "value": "0x5B"
+    },
+    "63": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "PUSH2",
+      "path": "0",
+      "value": "0x49"
+    },
+    "66": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "CALLDATASIZE",
+      "path": "0"
+    },
+    "67": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x4"
+    },
+    "69": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "PUSH2",
+      "path": "0",
+      "value": "0x12E"
+    },
+    "72": {
+      "fn": null,
+      "jump": "i",
+      "offset": [
+        323,
+        367
+      ],
+      "op": "JUMP",
+      "path": "0"
+    },
+    "73": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "JUMPDEST",
+      "path": "0"
+    },
+    "74": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x0"
+    },
+    "76": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x20"
+    },
+    "78": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "DUP2",
+      "path": "0"
+    },
+    "79": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "SWAP1",
+      "path": "0"
+    },
+    "80": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "MSTORE",
+      "path": "0"
+    },
+    "81": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "SWAP1",
+      "path": "0"
+    },
+    "82": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "DUP2",
+      "path": "0"
+    },
+    "83": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "MSTORE",
+      "path": "0"
+    },
+    "84": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x40"
+    },
+    "86": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "SWAP1",
+      "path": "0"
+    },
+    "87": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "KECCAK256",
+      "path": "0"
+    },
+    "88": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "SLOAD",
+      "path": "0"
+    },
+    "89": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "DUP2",
+      "path": "0"
+    },
+    "90": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "JUMP",
+      "path": "0"
+    },
+    "91": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "JUMPDEST",
+      "path": "0"
+    },
+    "92": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x40"
+    },
+    "94": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "MLOAD",
+      "path": "0"
+    },
+    "95": {
+      "op": "SWAP1"
+    },
+    "96": {
+      "op": "DUP2"
+    },
+    "97": {
+      "op": "MSTORE"
+    },
+    "98": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "100": {
+      "op": "ADD"
+    },
+    "101": {
+      "offset": [
+        323,
+        367
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x40"
+    },
+    "103": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "MLOAD",
+      "path": "0"
+    },
+    "104": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "DUP1",
+      "path": "0"
+    },
+    "105": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "SWAP2",
+      "path": "0"
+    },
+    "106": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "SUB",
+      "path": "0"
+    },
+    "107": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "SWAP1",
+      "path": "0"
+    },
+    "108": {
+      "fn": null,
+      "offset": [
+        323,
+        367
+      ],
+      "op": "RETURN",
+      "path": "0"
+    },
+    "109": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        579,
+        954
+      ],
+      "op": "JUMPDEST",
+      "path": "0"
+    },
+    "110": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        579,
+        954
+      ],
+      "op": "PUSH2",
+      "path": "0",
+      "value": "0x80"
+    },
+    "113": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        579,
+        954
+      ],
+      "op": "PUSH2",
+      "path": "0",
+      "value": "0x7B"
+    },
+    "116": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        579,
+        954
+      ],
+      "op": "CALLDATASIZE",
+      "path": "0"
+    },
+    "117": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        579,
+        954
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x4"
+    },
+    "119": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        579,
+        954
+      ],
+      "op": "PUSH2",
+      "path": "0",
+      "value": "0x12E"
+    },
+    "122": {
+      "fn": "Notarizacion.notarizar",
+      "jump": "i",
+      "offset": [
+        579,
+        954
+      ],
+      "op": "JUMP",
+      "path": "0"
+    },
+    "123": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        579,
+        954
+      ],
+      "op": "JUMPDEST",
+      "path": "0"
+    },
+    "124": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        579,
+        954
+      ],
+      "op": "PUSH2",
+      "path": "0",
+      "value": "0x82"
+    },
+    "127": {
+      "fn": "Notarizacion.notarizar",
+      "jump": "i",
+      "offset": [
+        579,
+        954
+      ],
+      "op": "JUMP",
+      "path": "0"
+    },
+    "128": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        579,
+        954
+      ],
+      "op": "JUMPDEST",
+      "path": "0"
+    },
+    "129": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        579,
+        954
+      ],
+      "op": "STOP",
+      "path": "0"
+    },
+    "130": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        579,
+        954
+      ],
+      "op": "JUMPDEST",
+      "path": "0"
+    },
+    "131": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        643,
+        651
+      ],
+      "op": "DUP1",
+      "path": "0",
+      "statement": 0
+    },
+    "132": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        635,
+        692
+      ],
+      "op": "PUSH2",
+      "path": "0",
+      "value": "0xCC"
+    },
+    "135": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        635,
+        692
+      ],
+      "op": "JUMPI",
+      "path": "0"
+    },
+    "136": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        635,
+        692
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x40"
+    },
+    "138": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        635,
+        692
+      ],
+      "op": "MLOAD",
+      "path": "0"
+    },
+    "139": {
+      "op": "PUSH3",
+      "value": "0x461BCD"
+    },
+    "143": {
+      "op": "PUSH1",
+      "value": "0xE5"
+    },
+    "145": {
+      "op": "SHL"
+    },
+    "146": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        635,
+        692
+      ],
+      "op": "DUP2",
+      "path": "0"
+    },
+    "147": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        635,
+        692
+      ],
+      "op": "MSTORE",
+      "path": "0"
+    },
+    "148": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "150": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        635,
+        692
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x4"
+    },
+    "152": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        635,
+        692
+      ],
+      "op": "DUP3",
+      "path": "0"
+    },
+    "153": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        635,
+        692
+      ],
+      "op": "ADD",
+      "path": "0"
+    },
+    "154": {
+      "op": "MSTORE"
+    },
+    "155": {
+      "op": "PUSH1",
+      "value": "0x16"
+    },
+    "157": {
+      "op": "PUSH1",
+      "value": "0x24"
+    },
+    "159": {
+      "op": "DUP3"
+    },
+    "160": {
+      "op": "ADD"
+    },
+    "161": {
+      "op": "MSTORE"
+    },
+    "162": {
+      "op": "PUSH22",
+      "value": "0x48617368206E6F20707565646520736572206365726F"
+    },
+    "185": {
+      "op": "PUSH1",
+      "value": "0x50"
+    },
+    "187": {
+      "op": "SHL"
+    },
+    "188": {
+      "op": "PUSH1",
+      "value": "0x44"
+    },
+    "190": {
+      "op": "DUP3"
+    },
+    "191": {
+      "op": "ADD"
+    },
+    "192": {
+      "op": "MSTORE"
+    },
+    "193": {
+      "op": "PUSH1",
+      "value": "0x64"
+    },
+    "195": {
+      "op": "ADD"
+    },
+    "196": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        635,
+        692
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x40"
+    },
+    "198": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        635,
+        692
+      ],
+      "op": "MLOAD",
+      "path": "0"
+    },
+    "199": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        635,
+        692
+      ],
+      "op": "DUP1",
+      "path": "0"
+    },
+    "200": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        635,
+        692
+      ],
+      "op": "SWAP2",
+      "path": "0"
+    },
+    "201": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        635,
+        692
+      ],
+      "op": "SUB",
+      "path": "0"
+    },
+    "202": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        635,
+        692
+      ],
+      "op": "SWAP1",
+      "path": "0"
+    },
+    "203": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        635,
+        692
+      ],
+      "op": "REVERT",
+      "optimizer_revert": true,
+      "path": "0"
+    },
+    "204": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        635,
+        692
+      ],
+      "op": "JUMPDEST",
+      "path": "0"
+    },
+    "205": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        781,
+        790
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x0"
+    },
+    "207": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        781,
+        800
+      ],
+      "op": "DUP2",
+      "path": "0"
+    },
+    "208": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        781,
+        800
+      ],
+      "op": "DUP2",
+      "path": "0"
+    },
+    "209": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        781,
+        800
+      ],
+      "op": "MSTORE",
+      "path": "0"
+    },
+    "210": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        781,
+        800
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x20"
+    },
+    "212": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        781,
+        800
+      ],
+      "op": "DUP2",
+      "path": "0"
+    },
+    "213": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        781,
+        800
+      ],
+      "op": "SWAP1",
+      "path": "0"
+    },
+    "214": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        781,
+        800
+      ],
+      "op": "MSTORE",
+      "path": "0"
+    },
+    "215": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        781,
+        800
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x40"
+    },
+    "217": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        781,
+        800
+      ],
+      "op": "DUP2",
+      "path": "0"
+    },
+    "218": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        781,
+        800
+      ],
+      "op": "KECCAK256",
+      "path": "0"
+    },
+    "219": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        781,
+        800
+      ],
+      "op": "SLOAD",
+      "path": "0"
+    },
+    "220": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        781,
+        805
+      ],
+      "op": "SWAP1",
+      "path": "0"
+    },
+    "221": {
+      "branch": 3,
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        781,
+        805
+      ],
+      "op": "SUB",
+      "path": "0"
+    },
+    "222": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        777,
+        948
+      ],
+      "op": "PUSH2",
+      "path": "0",
+      "value": "0x12B"
+    },
+    "225": {
+      "branch": 3,
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        777,
+        948
+      ],
+      "op": "JUMPI",
+      "path": "0"
+    },
+    "226": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        821,
+        830
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "statement": 1,
+      "value": "0x0"
+    },
+    "228": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        821,
+        840
+      ],
+      "op": "DUP2",
+      "path": "0"
+    },
+    "229": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        821,
+        840
+      ],
+      "op": "DUP2",
+      "path": "0"
+    },
+    "230": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        821,
+        840
+      ],
+      "op": "MSTORE",
+      "path": "0"
+    },
+    "231": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        821,
+        840
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x20"
+    },
+    "233": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        821,
+        840
+      ],
+      "op": "DUP2",
+      "path": "0"
+    },
+    "234": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        821,
+        840
+      ],
+      "op": "DUP2",
+      "path": "0"
+    },
+    "235": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        821,
+        840
+      ],
+      "op": "MSTORE",
+      "path": "0"
+    },
+    "236": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        821,
+        840
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x40"
+    },
+    "238": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        821,
+        840
+      ],
+      "op": "SWAP2",
+      "path": "0"
+    },
+    "239": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        821,
+        840
+      ],
+      "op": "DUP3",
+      "path": "0"
+    },
+    "240": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        821,
+        840
+      ],
+      "op": "SWAP1",
+      "path": "0"
+    },
+    "241": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        821,
+        840
+      ],
+      "op": "KECCAK256",
+      "path": "0"
+    },
+    "242": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        843,
+        858
+      ],
+      "op": "TIMESTAMP",
+      "path": "0"
+    },
+    "243": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        821,
+        858
+      ],
+      "op": "SWAP1",
+      "path": "0"
+    },
+    "244": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        821,
+        858
+      ],
+      "op": "DUP2",
+      "path": "0"
+    },
+    "245": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        821,
+        858
+      ],
+      "op": "SWAP1",
+      "path": "0"
+    },
+    "246": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        821,
+        858
+      ],
+      "op": "SSTORE",
+      "path": "0"
+    },
+    "247": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        877,
+        937
+      ],
+      "op": "SWAP2",
+      "path": "0",
+      "statement": 2
+    },
+    "248": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        877,
+        937
+      ],
+      "op": "MLOAD",
+      "path": "0"
+    },
+    "249": {
+      "op": "SWAP2"
+    },
+    "250": {
+      "op": "DUP3"
+    },
+    "251": {
+      "op": "MSTORE"
+    },
+    "252": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        821,
+        840
+      ],
+      "op": "DUP3",
+      "path": "0"
+    },
+    "253": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        821,
+        840
+      ],
+      "op": "SWAP2",
+      "path": "0"
+    },
+    "254": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        899,
+        909
+      ],
+      "op": "CALLER",
+      "path": "0"
+    },
+    "255": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        899,
+        909
+      ],
+      "op": "SWAP2",
+      "path": "0"
+    },
+    "256": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        877,
+        937
+      ],
+      "op": "PUSH32",
+      "path": "0",
+      "value": "0x4B9184D1C7AE30350E7ECEAB5FFBEC6DC693D39E9DE338F3273ADC2523BBE397"
+    },
+    "289": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        877,
+        937
+      ],
+      "op": "SWAP2",
+      "path": "0"
+    },
+    "290": {
+      "op": "ADD"
+    },
+    "291": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        877,
+        937
+      ],
+      "op": "PUSH1",
+      "path": "0",
+      "value": "0x40"
+    },
+    "293": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        877,
+        937
+      ],
+      "op": "MLOAD",
+      "path": "0"
+    },
+    "294": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        877,
+        937
+      ],
+      "op": "DUP1",
+      "path": "0"
+    },
+    "295": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        877,
+        937
+      ],
+      "op": "SWAP2",
+      "path": "0"
+    },
+    "296": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        877,
+        937
+      ],
+      "op": "SUB",
+      "path": "0"
+    },
+    "297": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        877,
+        937
+      ],
+      "op": "SWAP1",
+      "path": "0"
+    },
+    "298": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        877,
+        937
+      ],
+      "op": "LOG3",
+      "path": "0"
+    },
+    "299": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        777,
+        948
+      ],
+      "op": "JUMPDEST",
+      "path": "0"
+    },
+    "300": {
+      "fn": "Notarizacion.notarizar",
+      "offset": [
+        579,
+        954
+      ],
+      "op": "POP",
+      "path": "0"
+    },
+    "301": {
+      "fn": "Notarizacion.notarizar",
+      "jump": "o",
+      "offset": [
+        579,
+        954
+      ],
+      "op": "JUMP",
+      "path": "0"
+    },
+    "302": {
+      "op": "JUMPDEST"
+    },
+    "303": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "305": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "307": {
+      "op": "DUP3"
+    },
+    "308": {
+      "op": "DUP5"
+    },
+    "309": {
+      "op": "SUB"
+    },
+    "310": {
+      "op": "SLT"
+    },
+    "311": {
+      "op": "ISZERO"
+    },
+    "312": {
+      "op": "PUSH2",
+      "value": "0x140"
+    },
+    "315": {
+      "op": "JUMPI"
+    },
+    "316": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "318": {
+      "op": "DUP1"
+    },
+    "319": {
+      "op": "REVERT"
+    },
+    "320": {
+      "op": "JUMPDEST"
+    },
+    "321": {
+      "op": "POP"
+    },
+    "322": {
+      "op": "CALLDATALOAD"
+    },
+    "323": {
+      "op": "SWAP2"
+    },
+    "324": {
+      "op": "SWAP1"
+    },
+    "325": {
+      "op": "POP"
+    },
+    "326": {
+      "jump": "o",
+      "op": "JUMP"
+    }
+  },
+  "sha1": "23664f0096537f56a3bde23dac03112f2e78ae77",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract Notarizacion {\n    // Evento que se dispara al registrar un hash\n    event NotarizacionRealizada(\n        address indexed autor,\n        bytes32 indexed hashFoto,\n        uint256 timestamp\n    );\n\n    // Mapeo para guardar primer timestamp de cada hash\n    mapping(bytes32 => uint256) public registros;\n\n    /**\n     * @dev Registra el hash de una foto/v\u00eddeo en la blockchain.\n     *      Si el hash ya existe, no vuelve a emitir el evento.\n     * @param hashFoto El hash de la foto/v\u00eddeo (SHA-256)\n     */\n    function notarizar(bytes32 hashFoto) external {\n        require(hashFoto != bytes32(0), \"Hash no puede ser cero\");\n\n        // Si es la primera vez, guardamos el timestamp y emitimos evento\n        if (registros[hashFoto] == 0) {\n            registros[hashFoto] = block.timestamp;\n            emit NotarizacionRealizada(msg.sender, hashFoto, block.timestamp);\n        }\n    }\n}",
+  "sourceMap": "57:899:0:-:0;;;;;;;;;;;;;;;;;;;",
+  "sourcePath": "contracts/Notarizacion.sol",
+  "type": "contract"
+}
