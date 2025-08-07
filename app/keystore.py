@@ -12,7 +12,7 @@ KEY_PASSWORD = b'mi_contrasena_segura'
 
 def generate_keypair():
     """
-    Genera un par de claves EC secp256r1 y guarda la privada en KEY_FILE.
+    Genera un par de claves EC secp256k1 y guarda la privada en KEY_FILE.
     """
     private_key = ec.generate_private_key(ec.SECP256K1(), default_backend())
     # Serializar clave privada en PEM cifrado
