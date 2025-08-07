@@ -34,7 +34,7 @@ def capture_photo_with_native(on_complete):
         # Móvil: invocar cámara nativa
         plyer_camera.take_picture(str(filename), lambda path: on_complete(path))
     elif sys == 'Windows':
-        # Abrir la cámara nativa de Windows y continuar tras la captura
+        # Abrir la cámara nativa de Windows y esperar automáticamente a la nueva captura
         pictures_dir = Path.home() / 'Pictures' / 'Camera Roll'
         existing = {p: p.stat().st_mtime for p in list(pictures_dir.glob('*.jpg')) + list(pictures_dir.glob('*.png'))}
         subprocess.Popen(['start', 'microsoft.windows.camera:'], shell=True)
