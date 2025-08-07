@@ -20,6 +20,8 @@ def test_notarizar_emite_evento(contrato):
 def test_notarizar_unico(contrato):
     prueba_hash = b"\x34" * 32
     contrato.notarizar(prueba_hash, {'from': accounts[0]})
-    # Llamada segunda vez no debe volver a emitir
+    timestamp_inicial = contrato.registros(prueba_hash)
+    # Llamada segunda vez no debe volver a emitir ni alterar el registro
     tx2 = contrato.notarizar(prueba_hash, {'from': accounts[1]})
     assert len(tx2.events) == 0
+    assert contrato.registros(prueba_hash) == timestamp_inicial
