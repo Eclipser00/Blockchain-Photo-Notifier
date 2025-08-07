@@ -33,8 +33,7 @@ def build_transaction(hash_bytes: bytes, signature: bytes, public_key) -> dict:
     account = w3.eth.account.from_key(private_key_bytes)
 
     # Construir la transacción
-    hash_hex = Web3.toHex(hash_bytes)
-    tx = contract.functions.notarizar(hash_hex).buildTransaction({
+    tx = contract.functions.notarizar(hash_bytes).buildTransaction({
         'chainId': config.CHAIN_ID,
         'gas': config.GAS_LIMIT,
         'gasPrice': w3.toWei(config.GAS_PRICE_GWEI, 'gwei'),
