@@ -40,7 +40,7 @@ buscar archivo build/contracts/Notarizacion.json, renombrar a contract_abi.json
 
 y pegar en directorio raiz.
 
-4. Arrancar garnache en terminal limpia
+4. Arrancar ganache en terminal limpia
 
 
     ganache-cli -p 7545 --blockTime 1
