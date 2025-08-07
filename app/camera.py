@@ -3,6 +3,8 @@
 import os
 import json
 import platform
+import subprocess
+import shutil
 from pathlib import Path
 from plyer import camera as plyer_camera
 import cv2  # Para fallback en escritorio
@@ -30,8 +32,19 @@ def capture_photo_with_native(on_complete):
     if sys in ('Android', 'iOS'):
         # Móvil: invocar cámara nativa
         plyer_camera.take_picture(str(filename), lambda path: on_complete(path))
+    elif sys == 'Windows':
+        # Abrir la cámara nativa de Windows y esperar al usuario
+        pictures_dir = Path.home() / 'Pictures' / 'Camera Roll'
+        subprocess.Popen(['start', 'microsoft.windows.camera:'], shell=True)
+        input("Toma la foto con la app de cámara y cierra la ventana.\nPresiona Enter aquí cuando hayas terminado...")
+        candidates = list(pictures_dir.glob('*.jpg')) + list(pictures_dir.glob('*.png'))
+        if not candidates:
+            raise RuntimeError("No se encontró ninguna foto en Camera Roll")
+        latest_photo = max(candidates, key=lambda p: p.stat().st_mtime)
+        shutil.copy(latest_photo, filename)
+        on_complete(str(filename))
     else:
-        # Escritorio: usar OpenCV como fallback
+        # Otros escritorios: usar OpenCV como fallback
         cap = cv2.VideoCapture(0)
         if not cap.isOpened():
             raise RuntimeError("No se pudo acceder a la cámara desktop")
