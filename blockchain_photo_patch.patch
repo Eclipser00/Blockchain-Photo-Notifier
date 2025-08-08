@@ -1,0 +1,110 @@
+--- orig/app/camera.py	2025-08-08 09:14:32.838999122 -0700
++++ project/app/camera.py	2025-08-08 09:06:47.058875041 -0700
+@@ -66,19 +66,22 @@
+         # Invoca la cámara nativa mediante Plyer.  El resultado se guarda en ``filename``
+         plyer_camera.take_picture(str(filename), lambda path: on_complete(path))
+     elif plat == 'win':
+-        # Uso de OpenCV en Windows para capturar desde la webcam por defecto
+-        cap = cv2.VideoCapture(0)
+-        if not cap.isOpened():
+-            raise RuntimeError("No se pudo acceder a la cámara en Windows")
+-        # Descartar algunos frames iniciales para ajustar la imagen
+-        for _ in range(10):
+-            cap.read()
+-        ret, frame = cap.read()
+-        cap.release()
+-        if not ret:
+-            raise RuntimeError("No se capturó correctamente la imagen")
+-        cv2.imwrite(str(filename), frame)
+-        on_complete(str(filename))
++        # En Windows intentamos usar la misma API de cámara que en Android (Plyer).
++        # Plyer actualmente no implementa la cámara nativa en plataformas de
++        # escritorio, por lo que al invocar `take_picture` se lanzará una
++        # excepción `NotImplementedError`.  Queremos evitar la captura
++        # silenciosa mediante OpenCV y propagar un error para que la interfaz
++        # de usuario pueda mostrar un mensaje y ofrecer al usuario la opción
++        # de reintentar o salir.  Por ello se encapsula la llamada en un
++        # bloque try/except y en caso de fallar se lanza un RuntimeError
++        # descriptivo.
++        try:
++            plyer_camera.take_picture(str(filename), lambda path: on_complete(path))
++        except Exception:
++            # Lanzamos un error para que la UI sepa que la cámara no está disponible
++            raise RuntimeError(
++                "No se pudo acceder a la cámara nativa en Windows."
++            )
+     else:
+         # Fallback para Linux, macOS e iOS usando OpenCV
+         cap = cv2.VideoCapture(0)
+--- orig/app/ui.py	2025-08-08 09:14:33.075001067 -0700
++++ project/app/ui.py	2025-08-08 09:06:57.334956878 -0700
+@@ -5,6 +5,9 @@
+ from kivy.uix.boxlayout import BoxLayout
+ from kivy.uix.label import Label
+ from kivy.clock import Clock
++from kivy.uix.popup import Popup
++from kivy.uix.button import Button
++from kivy.app import App
+ import app.camera as camera_module
+ from app.blockchain import get_gas_price
+ 
+@@ -16,12 +19,58 @@
+         self.add_widget(layout)
+ 
+     def on_enter(self, *args):
+-        Clock.schedule_once(lambda dt: camera_module.capture_photo_with_native(self.on_picture), 0)
++        """
++        Cuando se entra en la pantalla de captura se intenta acceder a la cámara.
++        En lugar de invocar directamente la captura, delegamos en un método
++        auxiliar que captura excepciones y muestra un mensaje amigable en caso
++        de fallo.  Usamos un schedule con delay cero para que la interfaz
++        permanezca reactiva mientras se gestiona la cámara.
++        """
++        Clock.schedule_once(lambda dt: self._attempt_capture(), 0)
++
++    def _attempt_capture(self):
++        """Intenta capturar una foto y gestiona cualquier excepción."""
++        try:
++            camera_module.capture_photo_with_native(self.on_picture)
++        except Exception as exc:
++            # Si ocurre un error al abrir la cámara o capturar la foto,
++            # mostramos un mensaje al usuario con opciones para salir o reintentar.
++            self._show_error_popup("No se ha podido tomar la foto.\n" + str(exc))
+ 
+     def on_picture(self, image_path):
+         camera_module.process_photo(image_path)
+         self.manager.current = 'confirm'
+ 
++    def _show_error_popup(self, message: str):
++        """
++        Muestra un diálogo emergente con el mensaje de error y dos botones:
++        uno para volver a intentar la captura y otro para cerrar la aplicación.
++        """
++        # Contenedor principal del popup
++        content = BoxLayout(orientation='vertical', spacing=20, padding=20)
++        content.add_widget(Label(text=message, halign='center'))
++        # Contenedor para los botones
++        btn_box = BoxLayout(orientation='horizontal', spacing=20, size_hint_y=None, height=40)
++        retry_btn = Button(text="Volver a intentar")
++        exit_btn = Button(text="Salir del programa")
++        btn_box.add_widget(retry_btn)
++        btn_box.add_widget(exit_btn)
++        content.add_widget(btn_box)
++        # Crear el popup
++        popup = Popup(title="Error de cámara", content=content, size_hint=(0.9, 0.5))
++        # Lógica para reintentar captura
++        def _retry(_instance):
++            popup.dismiss()
++            # Reintentar captura tras cerrar el popup
++            Clock.schedule_once(lambda dt: self._attempt_capture(), 0)
++        # Lógica para salir de la aplicación
++        def _exit(_instance):
++            popup.dismiss()
++            App.get_running_app().stop()
++        retry_btn.bind(on_release=_retry)
++        exit_btn.bind(on_release=_exit)
++        popup.open()
++
+ class ConfirmScreen(Screen):
+     def __init__(self, **kwargs):
+         super().__init__(**kwargs)

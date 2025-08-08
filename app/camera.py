@@ -66,19 +66,22 @@ def capture_photo_with_native(on_complete):
         # Invoca la cámara nativa mediante Plyer.  El resultado se guarda en ``filename``
         plyer_camera.take_picture(str(filename), lambda path: on_complete(path))
     elif plat == 'win':
-        # Uso de OpenCV en Windows para capturar desde la webcam por defecto
-        cap = cv2.VideoCapture(0)
-        if not cap.isOpened():
-            raise RuntimeError("No se pudo acceder a la cámara en Windows")
-        # Descartar algunos frames iniciales para ajustar la imagen
-        for _ in range(10):
-            cap.read()
-        ret, frame = cap.read()
-        cap.release()
-        if not ret:
-            raise RuntimeError("No se capturó correctamente la imagen")
-        cv2.imwrite(str(filename), frame)
-        on_complete(str(filename))
+        # En Windows intentamos usar la misma API de cámara que en Android (Plyer).
+        # Plyer actualmente no implementa la cámara nativa en plataformas de
+        # escritorio, por lo que al invocar `take_picture` se lanzará una
+        # excepción `NotImplementedError`.  Queremos evitar la captura
+        # silenciosa mediante OpenCV y propagar un error para que la interfaz
+        # de usuario pueda mostrar un mensaje y ofrecer al usuario la opción
+        # de reintentar o salir.  Por ello se encapsula la llamada en un
+        # bloque try/except y en caso de fallar se lanza un RuntimeError
+        # descriptivo.
+        try:
+            plyer_camera.take_picture(str(filename), lambda path: on_complete(path))
+        except Exception:
+            # Lanzamos un error para que la UI sepa que la cámara no está disponible
+            raise RuntimeError(
+                "No se pudo acceder a la cámara nativa en Windows."
+            )
     else:
         # Fallback para Linux, macOS e iOS usando OpenCV
         cap = cv2.VideoCapture(0)
