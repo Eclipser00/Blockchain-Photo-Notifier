@@ -8,8 +8,8 @@ git checkout mejoras/camara-nativa
 git apply improvements_patch.diff
 
 # 3. Haz commit
-git add .
+git add . #(Tiene que estar el parche solo en la raíz.git)
 git commit -m "Aplicando mejoras de cámara nativa multiplataforma"
 
 # 4. Sube la rama a GitHub
-git push origin mejoras/camara-nativagit 
+git push origin mejoras/camara-nativa 
