@@ -1,0 +1,563 @@
+From 3cbde692f9d54f1291a23310ac70929431460c2c Mon Sep 17 00:00:00 2001
+From: Automation <automation@example.com>
+Date: Fri, 8 Aug 2025 06:44:24 -0700
+Subject: [PATCH] =?UTF-8?q?Refactor=20aplicaci=C3=B3n=20para=20mejorar=20c?=
+ =?UTF-8?q?ompatibilidad=20multiplataforma=20y=20seguridad=20de=20claves?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ README.md                                |  60 +++++++++++++++
+ app/__pycache__/camera.cpython-311.pyc   | Bin 0 -> 7367 bytes
+ app/__pycache__/keystore.cpython-311.pyc | Bin 0 -> 3911 bytes
+ app/__pycache__/metadata.cpython-311.pyc | Bin 0 -> 4970 bytes
+ app/camera.py                            |  94 ++++++++++++-----------
+ app/keystore.py                          |  39 +++++++++-
+ app/metadata.py                          |  64 +++++++++++----
+ 7 files changed, 196 insertions(+), 61 deletions(-)
+ create mode 100644 app/__pycache__/camera.cpython-311.pyc
+ create mode 100644 app/__pycache__/keystore.cpython-311.pyc
+ create mode 100644 app/__pycache__/metadata.cpython-311.pyc
+
+diff --git a/README.md b/README.md
+index 90516ac..34803fb 100644
+--- a/README.md
++++ b/README.md
+@@ -70,3 +70,63 @@ GAS_PRICE_GWEI=1.0
+ 
+ 4.Uso 
+     python main.py
++
++## Guía de instalación y uso actualizada
++
++Esta aplicación es un ejemplo educativo para notarizar fotos o vídeos mediante un contrato de Ethereum.  Las siguientes instrucciones reflejan la nueva estructura del repositorio y los cambios implementados:
++
++1. **Clonar el repositorio**
++
++   ```bash
++   git clone https://github.com/Eclipser00/Blockchain-Photo-Notifier.git
++   cd Blockchain-Photo-Notifier
++   ```
++
++2. **Instalar dependencias**
++
++   Usa `pip` para instalar las bibliotecas necesarias:
++
++   ```bash
++   pip install -r requirements.txt
++   ```
++
++3. **Compilar y desplegar el contrato**
++
++   El contrato `Notarizacion.sol` está en el directorio `Contract/contracts`.  Para compilarlo y desplegarlo necesitas [Brownie](https://eth-brownie.readthedocs.io/):
++
++   ```bash
++   cd Contract
++   brownie compile
++   # Lanza Ganache en segundo plano
++   ganache-cli -p 7545 --blockTime 1 &
++   # Despliega el contrato en la red local
++   brownie run scripts/deploy.py --network development
++   ```
++
++   Apunta la dirección del contrato desplegado y la URL del nodo; los necesitarás en el siguiente paso.
++
++4. **Configurar variables de entorno**
++
++   Crea un archivo `.env` en la raíz del proyecto o exporta las siguientes variables en tu terminal:
++
++   ```env
++   ETH_NODE_URL=http://127.0.0.1:7545       # URL del nodo Ethereum (local o Infura)
++   CONTRACT_ADDRESS=0x...                  # Dirección del contrato desplegado
++   CHAIN_ID=1337                           # ID de la red (1337 para Ganache, 1 para mainnet)
++   GAS_LIMIT=100000                        # Límite de gas para las transacciones
++   GAS_PRICE_GWEI=1.0                      # Precio del gas en Gwei
++   NOTARIZACION_KEY_PASSWORD=tu_clave      # Contraseña opcional para cifrar la clave privada
++   ```
++
++5. **Ejecutar la aplicación**
++
++   Desde la raíz del proyecto ejecuta:
++
++   ```bash
++   python main.py
++   ```
++
++   - **En Android**: compila la app con [Buildozer](https://buildozer.readthedocs.io/) u otra herramienta.  La aplicación solicitará permisos de cámara y almacenamiento, capturará la foto con la aplicación nativa y registrará el hash en la blockchain.
++   - **En Windows/Linux/macOS**: la aplicación abre la webcam usando OpenCV; al hacer clic se captura la imagen, se generan los metadatos y se registra en la blockchain.
++
++Estas instrucciones sustituyen a la guía anterior.
+diff --git a/app/__pycache__/camera.cpython-311.pyc b/app/__pycache__/camera.cpython-311.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..9a51f68a3f90283d259b30f165ca085136f74e32
+GIT binary patch
+literal 7367
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/app/__pycache__/keystore.cpython-311.pyc b/app/__pycache__/keystore.cpython-311.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..73845d896bdbe21b88955d2872c0fe20f60e9830
+GIT binary patch
+literal 3911
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/app/__pycache__/metadata.cpython-311.pyc b/app/__pycache__/metadata.cpython-311.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..20b1e27bb948308bf77f7e00694f7390183ea90e
+GIT binary patch
+literal 4970
+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
+Ti0l(EqW0%%qbT2vh;{lmGi|q4
+
+literal 0
+HcmV?d00001
+
+diff --git a/app/camera.py b/app/camera.py
+index efd6a57..ff1e4ba 100644
+--- a/app/camera.py
++++ b/app/camera.py
+@@ -2,19 +2,25 @@
+ 
+ import os
+ import json
+-import platform
+-import subprocess
+-import shutil
+-
+ import time
+-
++import shutil
+ 
+ from pathlib import Path
++
++# Dependencias externas para la cámara
+ from plyer import camera as plyer_camera
+-import cv2  # Para fallback en escritorio
++import cv2  # fallback para capturar imágenes desde la webcam
+ 
+ import config
+-from app.metadata import extract_exif, extract_sensors, extract_device_id, combine_metadata
++
++from kivy.utils import platform as kivy_platform
++
++from app.metadata import (
++    extract_exif,
++    extract_sensors,
++    extract_device_id,
++    combine_metadata,
++)
+ from app.hasher import compute_hash
+ from app.keystore import load_private_key, load_public_key
+ from app.wallet import sign_hash
+@@ -27,55 +33,57 @@ TEMP_FILE = Path(config.TMP_PHOTO_DIR) / 'last_capture.json'
+ 
+ def capture_photo_with_native(on_complete):
+     """
+-    Lanza la cámara nativa en Android/iOS o usa OpenCV en Windows/macOS/Linux.
+-    Al completar, llama a on_complete(path).
++    Captura una fotografía utilizando la cámara disponible según la plataforma.
++
++    * En Android se invoca la cámara nativa mediante Plyer y se solicitan
++      permisos de cámara y almacenamiento si la API lo permite.
++    * En Windows se utiliza OpenCV para acceder a la webcam por defecto.
++    * En otras plataformas (Linux, macOS, iOS) también se utiliza OpenCV.
++
++    Una vez terminada la captura, se llama al callback ``on_complete`` con
++    la ruta del fichero guardado.
+     """
++    # Asegurarse de que el directorio de almacenamiento temporal exista
+     os.makedirs(config.TMP_PHOTO_DIR, exist_ok=True)
+-    filename = Path(config.TMP_PHOTO_DIR) / f"photo_{int(Path.cwd().stat().st_mtime)}.jpg"
+-    sys = platform.system()
+-    if sys in ('Android', 'iOS'):
+-        # Móvil: invocar cámara nativa
++    # Generar un nombre de archivo único en milisegundos para evitar colisiones
++    filename = Path(config.TMP_PHOTO_DIR) / f"photo_{int(time.time()*1000)}.jpg"
++
++    plat = kivy_platform
++    if plat == 'android':
++        # Pedir permisos en tiempo de ejecución (en Android < 6 no es necesario)
++        try:
++            from android.permissions import request_permissions, Permission
++            request_permissions([Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE])
++        except Exception:
++            # Si no se puede pedir permisos, continuamos.  La cámara podría fallar.
++            pass
++        # Invoca la cámara nativa mediante Plyer.  El resultado se guarda en ``filename``
+         plyer_camera.take_picture(str(filename), lambda path: on_complete(path))
+-    elif sys == 'Windows':
+-
+-        # Abrir la cámara nativa de Windows y esperar automáticamente a la nueva captura
+-        pictures_dir = Path.home() / 'Pictures' / 'Camera Roll'
+-        existing = {p: p.stat().st_mtime for p in list(pictures_dir.glob('*.jpg')) + list(pictures_dir.glob('*.png'))}
+-        subprocess.Popen(['start', 'microsoft.windows.camera:'], shell=True)
+-        latest_photo = None
+-        while True:
+-            time.sleep(1)
+-            candidates = list(pictures_dir.glob('*.jpg')) + list(pictures_dir.glob('*.png'))
+-            if not candidates:
+-                continue
+-            newest = max(candidates, key=lambda p: p.stat().st_mtime)
+-            if newest not in existing or newest.stat().st_mtime != existing[newest]:
+-                latest_photo = newest
+-
+-        # Abrir la cámara nativa de Windows y esperar al usuario
+-        pictures_dir = Path.home() / 'Pictures' / 'Camera Roll'
+-        subprocess.Popen(['start', 'microsoft.windows.camera:'], shell=True)
+-        input("Toma la foto con la app de cámara y cierra la ventana.\nPresiona Enter aquí cuando hayas terminado...")
+-        candidates = list(pictures_dir.glob('*.jpg')) + list(pictures_dir.glob('*.png'))
+-        if not candidates:
+-            raise RuntimeError("No se encontró ninguna foto en Camera Roll")
+-        latest_photo = max(candidates, key=lambda p: p.stat().st_mtime)
+-
+-        shutil.copy(latest_photo, filename)
++    elif plat == 'win':
++        # Uso de OpenCV en Windows para capturar desde la webcam por defecto
++        cap = cv2.VideoCapture(0)
++        if not cap.isOpened():
++            raise RuntimeError("No se pudo acceder a la cámara en Windows")
++        # Descartar algunos frames iniciales para ajustar la imagen
++        for _ in range(10):
++            cap.read()
++        ret, frame = cap.read()
++        cap.release()
++        if not ret:
++            raise RuntimeError("No se capturó correctamente la imagen")
++        cv2.imwrite(str(filename), frame)
+         on_complete(str(filename))
+     else:
+-        # Otros escritorios: usar OpenCV como fallback
++        # Fallback para Linux, macOS e iOS usando OpenCV
+         cap = cv2.VideoCapture(0)
+         if not cap.isOpened():
+-            raise RuntimeError("No se pudo acceder a la cámara desktop")
+-        # Desecho de primeros frames
++            raise RuntimeError("No se pudo acceder a la cámara de escritorio")
+         for _ in range(10):
+             cap.read()
+         ret, frame = cap.read()
+         cap.release()
+         if not ret:
+             raise RuntimeError("No se capturó correctamente la imagen")
+-        # Guardar imagen
+         cv2.imwrite(str(filename), frame)
+         on_complete(str(filename))
+ 
+diff --git a/app/keystore.py b/app/keystore.py
+index 9965e47..829f6f3 100644
+--- a/app/keystore.py
++++ b/app/keystore.py
+@@ -5,10 +5,43 @@ from cryptography.hazmat.primitives.asymmetric import ec
+ from cryptography.hazmat.backends import default_backend
+ import config
+ 
++"""
++Gestión de claves privadas para la aplicación.  Este módulo genera y carga
++un par de claves EC (secp256k1) que se utilizan para firmar los hashes de las
++fotografías.  La clave privada se almacena en un fichero PEM cifrado.
++
++* La ruta de almacenamiento de la clave (`KEY_FILE`) depende de la plataforma:
++  - En Android se utiliza el directorio de datos de usuario de Kivy (`App.user_data_dir`),
++    para evitar escribir en la raíz del sistema.
++  - En otras plataformas se utiliza el directorio personal del usuario (`~`).
++* La contraseña de cifrado se puede establecer mediante la variable de entorno
++  ``NOTARIZACION_KEY_PASSWORD``.  Si no se define, se usa una contraseña por defecto.
++"""
++
++from kivy.utils import platform as kivy_platform
++
++def _get_key_path() -> str:
++    """Devuelve la ruta donde se almacenará el archivo de la clave privada."""
++    plat = kivy_platform
++    # Intenta utilizar el directorio de datos de la aplicación en Android
++    if plat == 'android':
++        try:
++            from plyer import storagepath
++            # storagepath.get_application_dir() devuelve un directorio privado de la app
++            app_dir = storagepath.get_application_dir()
++            return os.path.join(app_dir, 'notarizacion_key.pem')
++        except Exception:
++            # Fallback a home si no existe storagepath
++            return os.path.expanduser('~/.notarizacion_key.pem')
++    else:
++        return os.path.expanduser('~/.notarizacion_key.pem')
++
++
+ # Ruta donde guardamos la clave privada cifrada
+-KEY_FILE = os.path.expanduser('~/.notarizacion_key.pem')
+-# Contraseña para cifrado PEM (en producción, usar almacenamiento seguro como Keychain o Keystore)
+-KEY_PASSWORD = b'mi_contrasena_segura'
++KEY_FILE = _get_key_path()
++
++# Contraseña para cifrado PEM.  Permitir sobrescribir mediante variable de entorno.
++KEY_PASSWORD = os.environ.get('NOTARIZACION_KEY_PASSWORD', 'mi_contrasena_segura').encode('utf-8')
+ 
+ def generate_keypair():
+     """
+diff --git a/app/metadata.py b/app/metadata.py
+index a1d6972..223280f 100644
+--- a/app/metadata.py
++++ b/app/metadata.py
+@@ -4,22 +4,44 @@ import piexif
+ from utils.sensors import get_accelerometer, get_gyroscope
+ import os
+ import platform
++import uuid
++from kivy.utils import platform as kivy_platform
++
++def dms_to_degrees(dms):
++    """
++    Convierte coordenadas GPS en formato DMS (grados/minutos/segundos) a grados
++    decimales.  ``dms`` puede ser una lista de tuplas (numerador, denominador)
++    tal y como devuelve ``piexif``.  Devuelve ``None`` si los datos no son
++    válidos.
++    """
++    try:
++        # Cada elemento es (numerador, denominador)
++        degrees = dms[0][0] / dms[0][1]
++        minutes = dms[1][0] / dms[1][1]
++        seconds = dms[2][0] / dms[2][1]
++        return degrees + minutes / 60 + seconds / 3600
++    except Exception:
++        return None
++
+ 
+ def extract_exif(image_path: str) -> dict:
+-    """Extrae EXIF de imagen (fecha, hora, GPS)."""
++    """Extrae metadatos EXIF relevantes de una imagen (fecha, hora y GPS)."""
+     try:
+         exif_dict = piexif.load(image_path)
+         gps = exif_dict.get('GPS', {})
+-        # Obtener coordenadas si existen
+-        lat = gps.get(piexif.GPSIFD.GPSLatitude)
+-        lon = gps.get(piexif.GPSIFD.GPSLongitude)
++        # Obtener coordenadas si existen y convertirlas a decimales
++        lat_raw = gps.get(piexif.GPSIFD.GPSLatitude)
++        lon_raw = gps.get(piexif.GPSIFD.GPSLongitude)
++        lat = dms_to_degrees(lat_raw) if lat_raw else None
++        lon = dms_to_degrees(lon_raw) if lon_raw else None
+         datetime = exif_dict['0th'].get(piexif.ImageIFD.DateTime)
+         return {
+             'datetime': datetime.decode() if datetime else None,
+             'gps_latitude': lat,
+-            'gps_longitude': lon
++            'gps_longitude': lon,
+         }
+     except Exception:
++        # Si no hay EXIF o no se puede parsear, devolvemos diccionario vacío
+         return {}
+ 
+ def extract_sensors() -> dict:
+@@ -38,17 +60,29 @@ def extract_sensors() -> dict:
+     }
+ 
+ def extract_device_id() -> str:
+-    """Obtiene identificador único de dispositivo."""
+-    sys = platform.system()
+-    if sys == 'Android':
+-        # Android_ID desde entorno o Plyer
+-        from plyer import uniqueid
+-        return uniqueid.id
+-    elif sys == 'iOS':
+-        # identifierForVendor en iOS (ej. usando pyobjus)
+-        return os.getenv('IOS_VENDOR_ID', 'unknown')
++    """
++    Obtiene un identificador único del dispositivo en función de la plataforma.
++
++    * En Android se utiliza el servicio ``uniqueid`` de Plyer para obtener el
++      ANDROID_ID.  Si falla, se genera un UUID persistente usando ``uuid.getnode()``.
++    * En iOS se lee de la variable de entorno ``IOS_VENDOR_ID`` (cuando se empaqueta
++      con PyObjus/pyto), o se genera un identificador anónimo.
++    * En Windows, Linux y macOS se usa el nombre de host con
++      ``platform.node()``, y si éste está vacío se genera un UUID basado en
++      la dirección MAC.
++    """
++    plat = kivy_platform
++    if plat == 'android':
++        try:
++            from plyer import uniqueid
++            return uniqueid.id or str(uuid.getnode())
++        except Exception:
++            return str(uuid.getnode())
++    elif plat == 'ios':
++        return os.getenv('IOS_VENDOR_ID', 'unknown') or str(uuid.getnode())
+     else:
+-        return platform.node()
++        node = platform.node()
++        return node if node else str(uuid.getnode())
+ 
+ def combine_metadata(exif: dict, sensors: dict, device_id: str) -> dict:
+     """Combina todos los metadatos en un solo dict."""
+-- 
+2.39.5
+

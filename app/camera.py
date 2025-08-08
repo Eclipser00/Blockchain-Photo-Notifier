@@ -2,19 +2,25 @@
 
 import os
 import json
-import platform
-import subprocess
+import time
 import shutil
 
-import time
-
-
 from pathlib import Path
+
+# Dependencias externas para la cámara
 from plyer import camera as plyer_camera
-import cv2  # Para fallback en escritorio
+import cv2  # fallback para capturar imágenes desde la webcam
 
 import config
-from app.metadata import extract_exif, extract_sensors, extract_device_id, combine_metadata
+
+from kivy.utils import platform as kivy_platform
+
+from app.metadata import (
+    extract_exif,
+    extract_sensors,
+    extract_device_id,
+    combine_metadata,
+)
 from app.hasher import compute_hash
 from app.keystore import load_private_key, load_public_key
 from app.wallet import sign_hash
@@ -27,55 +33,57 @@ TEMP_FILE = Path(config.TMP_PHOTO_DIR) / 'last_capture.json'
 
 def capture_photo_with_native(on_complete):
     """
-    Lanza la cámara nativa en Android/iOS o usa OpenCV en Windows/macOS/Linux.
-    Al completar, llama a on_complete(path).
+    Captura una fotografía utilizando la cámara disponible según la plataforma.
+
+    * En Android se invoca la cámara nativa mediante Plyer y se solicitan
+      permisos de cámara y almacenamiento si la API lo permite.
+    * En Windows se utiliza OpenCV para acceder a la webcam por defecto.
+    * En otras plataformas (Linux, macOS, iOS) también se utiliza OpenCV.
+
+    Una vez terminada la captura, se llama al callback ``on_complete`` con
+    la ruta del fichero guardado.
     """
+    # Asegurarse de que el directorio de almacenamiento temporal exista
     os.makedirs(config.TMP_PHOTO_DIR, exist_ok=True)
-    filename = Path(config.TMP_PHOTO_DIR) / f"photo_{int(Path.cwd().stat().st_mtime)}.jpg"
-    sys = platform.system()
-    if sys in ('Android', 'iOS'):
-        # Móvil: invocar cámara nativa
+    # Generar un nombre de archivo único en milisegundos para evitar colisiones
+    filename = Path(config.TMP_PHOTO_DIR) / f"photo_{int(time.time()*1000)}.jpg"
+
+    plat = kivy_platform
+    if plat == 'android':
+        # Pedir permisos en tiempo de ejecución (en Android < 6 no es necesario)
+        try:
+            from android.permissions import request_permissions, Permission
+            request_permissions([Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE])
+        except Exception:
+            # Si no se puede pedir permisos, continuamos.  La cámara podría fallar.
+            pass
+        # Invoca la cámara nativa mediante Plyer.  El resultado se guarda en ``filename``
         plyer_camera.take_picture(str(filename), lambda path: on_complete(path))
-    elif sys == 'Windows':
-
-        # Abrir la cámara nativa de Windows y esperar automáticamente a la nueva captura
-        pictures_dir = Path.home() / 'Pictures' / 'Camera Roll'
-        existing = {p: p.stat().st_mtime for p in list(pictures_dir.glob('*.jpg')) + list(pictures_dir.glob('*.png'))}
-        subprocess.Popen(['start', 'microsoft.windows.camera:'], shell=True)
-        latest_photo = None
-        while True:
-            time.sleep(1)
-            candidates = list(pictures_dir.glob('*.jpg')) + list(pictures_dir.glob('*.png'))
-            if not candidates:
-                continue
-            newest = max(candidates, key=lambda p: p.stat().st_mtime)
-            if newest not in existing or newest.stat().st_mtime != existing[newest]:
-                latest_photo = newest
-
-        # Abrir la cámara nativa de Windows y esperar al usuario
-        pictures_dir = Path.home() / 'Pictures' / 'Camera Roll'
-        subprocess.Popen(['start', 'microsoft.windows.camera:'], shell=True)
-        input("Toma la foto con la app de cámara y cierra la ventana.\nPresiona Enter aquí cuando hayas terminado...")
-        candidates = list(pictures_dir.glob('*.jpg')) + list(pictures_dir.glob('*.png'))
-        if not candidates:
-            raise RuntimeError("No se encontró ninguna foto en Camera Roll")
-        latest_photo = max(candidates, key=lambda p: p.stat().st_mtime)
-
-        shutil.copy(latest_photo, filename)
-        on_complete(str(filename))
-    else:
-        # Otros escritorios: usar OpenCV como fallback
+    elif plat == 'win':
+        # Uso de OpenCV en Windows para capturar desde la webcam por defecto
         cap = cv2.VideoCapture(0)
         if not cap.isOpened():
-            raise RuntimeError("No se pudo acceder a la cámara desktop")
-        # Desecho de primeros frames
+            raise RuntimeError("No se pudo acceder a la cámara en Windows")
+        # Descartar algunos frames iniciales para ajustar la imagen
         for _ in range(10):
             cap.read()
         ret, frame = cap.read()
         cap.release()
         if not ret:
             raise RuntimeError("No se capturó correctamente la imagen")
-        # Guardar imagen
+        cv2.imwrite(str(filename), frame)
+        on_complete(str(filename))
+    else:
+        # Fallback para Linux, macOS e iOS usando OpenCV
+        cap = cv2.VideoCapture(0)
+        if not cap.isOpened():
+            raise RuntimeError("No se pudo acceder a la cámara de escritorio")
+        for _ in range(10):
+            cap.read()
+        ret, frame = cap.read()
+        cap.release()
+        if not ret:
+            raise RuntimeError("No se capturó correctamente la imagen")
         cv2.imwrite(str(filename), frame)
         on_complete(str(filename))
 

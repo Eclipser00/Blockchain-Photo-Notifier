@@ -1,0 +1,15 @@
+#0. Actualiza las ramas creadas en la web
+git fetch origin
+
+# 1. Cambia a la rama de desarrollo
+git checkout mejoras/camara-nativa
+
+# 2. Aplica el parche
+git apply improvements_patch.diff
+
+# 3. Haz commit
+git add .
+git commit -m "Aplicando mejoras de cámara nativa multiplataforma"
+
+# 4. Sube la rama a GitHub
+git push origin mejoras/camara-nativagit 
