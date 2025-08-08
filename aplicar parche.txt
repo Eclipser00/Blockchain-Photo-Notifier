@@ -1,3 +1,5 @@
+Hacerlo desde la carpeta del proyecto en bash, si no actualizara pycharm directamnte con los cambios antes de probarlo....
+
 #0. Actualiza las ramas creadas en la web
 git fetch origin
 
