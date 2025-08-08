@@ -10,6 +10,7 @@ from pathlib import Path
 # Dependencias externas para la cámara
 from plyer import camera as plyer_camera
 import cv2  # fallback para capturar imágenes desde la webcam
+import importlib
 
 import config
 
@@ -50,12 +51,17 @@ def capture_photo_with_native(on_complete):
 
     plat = kivy_platform
     if plat == 'android':
-        # Pedir permisos en tiempo de ejecución (en Android < 6 no es necesario)
+        # Pedir permisos en tiempo de ejecución (en Android < 6 no es necesario).
+        # Importamos las clases de permisos dinámicamente para evitar referencias
+        # no resueltas cuando se analiza el código en entornos de escritorio.
         try:
-            from android.permissions import request_permissions, Permission
-            request_permissions([Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE])
+            permissions_mod = importlib.import_module('android.permissions')
+            request_permissions = getattr(permissions_mod, 'request_permissions', None)
+            Permission = getattr(permissions_mod, 'Permission', None)
+            if request_permissions and Permission:
+                request_permissions([Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE])
         except Exception:
-            # Si no se puede pedir permisos, continuamos.  La cámara podría fallar.
+            # Si no se puede pedir permisos o no existen las clases, continuamos.
             pass
         # Invoca la cámara nativa mediante Plyer.  El resultado se guarda en ``filename``
         plyer_camera.take_picture(str(filename), lambda path: on_complete(path))
