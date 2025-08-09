@@ -148,6 +148,8 @@ def process_photo(image_path: str):
     with open(TEMP_FILE, 'w', encoding='utf-8') as f:
         json.dump(data, f)
 
+    # PRUEBA GITHUB CAMBIOS
+
 
 
 
