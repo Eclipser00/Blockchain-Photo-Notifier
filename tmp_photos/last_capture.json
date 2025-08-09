@@ -1,7 +1,7 @@
 {
-  "image_path": "tmp_photos\\photo_1754365536.jpg",
-  "hash": "11ce60c29a7de3d0c2f86ccbe5543bc22b1995e62249402b53924f0fbeee86c6",
-  "signature": "304502203b0bd3cf1cdc73e1270dd8ae017b81fc126a64f3adff569601c01c101240ab4a02210096b2633ff09ea70d565e23905b37cdece55b02e3218219f8657ec3a0ed83551f",
+  "image_path": "tmp_photos\\photo_1754673060705.jpg",
+  "hash": "818f3633a87b0819f1684d20fd4dae9753e9a0bec1a0df613845048dded63b17",
+  "signature": "304402202873201737290527668ef44c074e1a27f24d2fa601b8956bd7db4c41f28e2436022051f7a023650638b7cf2bc4b144a4aa81e603a815e74436ad9e5594b5b2dfe7ea",
   "public_key": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAExIaqX03jaIJT+9ud3bG2rZuf8XYA\nkXVxh+CkNh51yypRp7h7r/EZjcx5C126lbP59wtjc+SULkL12PG0tieYGg==\n-----END PUBLIC KEY-----\n",
   "metadata": {
     "datetime": null,

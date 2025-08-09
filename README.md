@@ -1,4 +1,4 @@
-# Notarización de Fotos en Blockchain
+# Notarización de Fotos en Blockchain ELIMINADO...
 
 Una aplicación móvil para capturar fotos/vídeos, generar un hash con metadatos y registrarlo en Ethereum como prueba de autoría e integridad.
 
